@@ -1,0 +1,26 @@
+[Unit]
+Description=DB2 instance db2inst1
+After=rtvscand.service
+
+[Service]
+Type=forking
+User=db2inst1
+CPUAccounting=1
+MemoryAccounting=1
+BlockIOAccounting=1
+Environment=IBM_DB_LIB=/home/db2inst1/sqllib/lib
+Environment=IBM_DB_DIR=/home/db2inst1/sqllib
+Environment=LD_LIBRARY_PATH=/home/db2inst1/sqllib/lib64:/home/db2inst1/sqllib/lib64/gskit:/home/db2inst1/sqllib/lib32
+Environment=IBM_DB_HOME=/home/db2inst1/sqllib
+Environment=PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/db2inst1/sqllib/bin:/home/db2inst1/sqllib/adm:/home/db2inst1/sqllib/misc:/home/db2inst1/.local/bin:/home/db2inst1/bin
+Environment=DB2_HOME=/home/db2inst1/sqllib
+Environment=IBM_DB_INCLUDE=/home/db2inst1/sqllib/include
+Environment=CLASSPATH=/home/db2inst1/sqllib/java/db2java.zip:/home/db2inst1/sqllib/function:/home/db2inst1/sqllib/java/db2jcc_license_cu.jar:/home/db2inst1/sqllib/tools/clpplus.jar:/home/db2inst1/sqllib/tools/jline-0.9.93.jar:/home/db2inst1/sqllib/java/db2jcc.jar:.
+Environment=DB2LIB=/home/db2inst1/sqllib/lib
+ExecStart=/bin/bash -c "/home/db2inst1/sqllib/adm/db2start"
+ExecStop=/bin/bash -c "/home/db2inst1/sqllib/adm/db2stop"
+RestartSec=300
+#Restart=always
+#
+[Install]
+WantedBy=multi-user.target

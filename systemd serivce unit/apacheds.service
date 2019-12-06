@@ -1,0 +1,15 @@
+[Unit]
+Description=ApacheDS cognos-ldap
+
+[Service]
+Type=fork
+CPUAccounting=1
+MemoryAccounting=1
+BlockIOAccounting=1
+User=apacheds
+PIDFile=/var/lib/apacheds-2.0.0.AM25/cognos-ldap/run/apacheds-cognos-ldap.pid
+ExecStart=/opt/apacheds-2.0.0.AM25/bin/apacheds start cognos-ldap
+ExecStop=/opt/apacheds-2.0.0.AM25/bin/apacheds stop cognos-ldap
+
+[Install]
+WantedBy=multi-user.target

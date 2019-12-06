@@ -1,0 +1,21 @@
+[Unit]
+Description=Cognos Analytics
+Requires=db2.service
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+User=cognosd
+LimitNOFILE=65536
+CPUAccounting=1
+MemoryAccounting=1
+BlockIOAccounting=1
+Environment=LD_LIBRARY_PATH=/opt/ibm/cognos/analytics/cgi-bin:/home/db2inst1/sqllib/lib32/
+Environment=JAVA_HOME=/opt/ibm/cognos/analytics/jre
+ExecStart=/opt/ibm/cognos/analytics/bin64/cogconfig.sh -s
+ExecStop=/opt/ibm/cognos/analytics/bin64/cogconfig.sh -stop
+RestartSec=300
+#Restart=always
+
+[Install]
+WantedBy=multi-user.target
